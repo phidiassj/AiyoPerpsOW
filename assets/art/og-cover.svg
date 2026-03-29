@@ -1,0 +1,24 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#09111A"/>
+  <circle cx="222" cy="98" r="180" fill="#23D3B6" fill-opacity="0.18"/>
+  <circle cx="998" cy="102" r="176" fill="#FFB86B" fill-opacity="0.15"/>
+  <rect x="56" y="56" width="1088" height="518" rx="34" fill="url(#paint0_linear)" stroke="#223648"/>
+  <text x="88" y="130" fill="#EDF4FA" font-family="Arial, sans-serif" font-size="34" font-weight="700">AiyoPerps</text>
+  <text x="88" y="232" fill="#EDF4FA" font-family="Arial, sans-serif" font-size="68" font-weight="700">Desktop terminal for</text>
+  <text x="88" y="308" fill="#EDF4FA" font-family="Arial, sans-serif" font-size="68" font-weight="700">manual + AI perps trading</text>
+  <text x="88" y="374" fill="#A7B7C8" font-family="Arial, sans-serif" font-size="28">CEX and DEX support, local MCP server, REST API, headless runtime, bilingual docs.</text>
+  <rect x="88" y="430" width="212" height="52" rx="26" fill="#67F0B4"/>
+  <text x="126" y="464" fill="#071116" font-family="Arial, sans-serif" font-size="24" font-weight="700">perps.aiyo.app</text>
+  <rect x="790" y="130" width="282" height="146" rx="26" fill="#0B1621" stroke="#223648"/>
+  <text x="824" y="177" fill="#9BB0C4" font-family="Arial, sans-serif" font-size="22">Desktop UI</text>
+  <text x="824" y="226" fill="#EDF4FA" font-family="Arial, sans-serif" font-size="34" font-weight="700">Trade with control</text>
+  <rect x="742" y="316" width="330" height="160" rx="26" fill="#0B1621" stroke="#223648"/>
+  <text x="776" y="363" fill="#9BB0C4" font-family="Arial, sans-serif" font-size="22">AI stack</text>
+  <text x="776" y="412" fill="#EDF4FA" font-family="Arial, sans-serif" font-size="34" font-weight="700">MCP, REST, wake-up</text>
+  <defs>
+    <linearGradient id="paint0_linear" x1="123" y1="85" x2="1093" y2="558" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F1A25"/>
+      <stop offset="1" stop-color="#0A121B"/>
+    </linearGradient>
+  </defs>
+</svg>
