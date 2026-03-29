@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AiyoPerps 官方網站 | AI 時代的永續合約桌面終端</title>
   <meta name="description" content="AiyoPerps 是支援 CEX 與 DEX 的永續合約桌面交易終端，提供桌面 UI、本機 MCP Server、REST API 與 headless 模式。">
+  <meta name="keywords" content="AiyoPerps, 永續合約, Perps Terminal, AI Trading, MCP Server, REST API, Headless Trading, Hyperliquid, BitMEX, dYdX">
   <meta name="theme-color" content="#09111A">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://perps.aiyo.app/">
@@ -17,17 +18,24 @@
   <meta property="og:title" content="AiyoPerps 官方網站 | AI 時代的永續合約桌面終端">
   <meta property="og:description" content="手動交易、AI 協作與全自動 AI 工作流，都能在同一套桌面終端中完成。">
   <meta property="og:url" content="https://perps.aiyo.app/">
-  <meta property="og:image" content="https://perps.aiyo.app/assets/art/og-cover.svg">
+  <meta property="og:image" content="https://perps.aiyo.app/assets/images/og-aiyo.jpg">
+  <meta property="og:image:alt" content="AiyoPerps futuristic trading command center artwork">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://perps.aiyo.app/assets/art/og-cover.svg">
+  <meta name="twitter:title" content="AiyoPerps 官方網站 | AI 時代的永續合約桌面終端">
+  <meta name="twitter:description" content="支援 CEX / DEX、MCP Server、REST API 與 headless 的開源永續合約桌面終端。">
+  <meta name="twitter:image" content="https://perps.aiyo.app/assets/images/og-aiyo.jpg">
   <link rel="icon" type="image/png" href="/assets/images/logo.png">
   <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="preload" as="image" href="/assets/images/hero-ai.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/site.css">
   <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"SoftwareApplication","name":"AiyoPerps","applicationCategory":"FinanceApplication","operatingSystem":"Windows, Linux, macOS (via Docker)","inLanguage":["zh-Hant","en"],"url":"https://perps.aiyo.app/","downloadUrl":"https://github.com/phidiassj/AiyoPerps/releases/latest","description":"支援 CEX 與 DEX 的永續合約桌面交易終端，內建桌面 UI、本機 MCP Server、REST API 與 headless 模式。","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"sameAs":["https://github.com/phidiassj/AiyoPerps"]}
+  </script>
+  <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"AiyoPerps 可以只當本機 MCP 或 API 伺服器使用嗎？","acceptedAnswer":{"@type":"Answer","text":"可以。AiyoPerps 支援 headless 模式，可只開啟本機 REST API 與 MCP 端點，不需要桌面介面。"}},{"@type":"Question","name":"AiyoPerps 支援哪些交易所？","acceptedAnswer":{"@type":"Answer","text":"目前官方文件列出的支援平台包含 BitMEX、Hyperliquid、Aster、Grvt 與 dYdX。"}},{"@type":"Question","name":"AiyoPerps 適合手動交易者嗎？","acceptedAnswer":{"@type":"Answer","text":"適合。它保留完整桌面交易介面，並在同一套架構中提供 AI 協作與自動化能力。"}}]}
   </script>
 </head>
 <body>
@@ -63,7 +71,7 @@
           </div>
         </div>
         <div class="panel hero-visual" data-reveal>
-          <img class="orbital-art" src="/assets/art/hero-orbit.svg" alt="AiyoPerps 功能概念圖">
+          <img class="orbital-art" src="/assets/images/hero-ai.webp" alt="AiyoPerps 未來感交易控制中心主視覺" width="1536" height="1024">
           <div class="terminal-card">
             <div class="terminal-head" aria-hidden="true"><span></span><span></span><span></span></div>
             <code>npx -y @phidiassj/aiyoperps-mcp-installer
