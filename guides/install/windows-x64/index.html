@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>如何在 Windows x64 安裝 AiyoPerps | 官方教學</title>
+  <meta name="description" content="一步一步在 Windows x64 安裝 AiyoPerps，包含下載 release、解壓、啟動與成功驗證。">
+  <meta name="keywords" content="AiyoPerps Windows x64 安裝, AiyoPerps 教學, Windows 安裝永續合約桌面程式">
+  <link rel="canonical" href="https://perps.aiyo.app/guides/install/windows-x64/">
+  <meta property="og:title" content="如何在 Windows x64 安裝 AiyoPerps | 官方教學">
+  <meta property="og:description" content="從下載 release 到啟動桌面版，完整整理成可直接照做的安裝步驟。">
+  <meta property="og:image" content="https://perps.aiyo.app/assets/images/og-aiyo.jpg">
+  <link rel="icon" type="image/png" href="/assets/images/logo.png">
+  <link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要內容</a>
+  <header class="site-header">
+    <div class="shell">
+      <a class="brand" href="/"><img src="/assets/images/logo.png" alt="AiyoPerps logo" width="42" height="42"><span><small>Official Website</small>AiyoPerps</span></a>
+      <nav class="nav" aria-label="主要導覽"><a href="/guides/">教學首頁</a><a href="/guides/install/linux-x64/">Linux</a><a href="/guides/install/docker-headless/">Docker</a><a href="https://github.com/phidiassj/AiyoPerps" target="_blank" rel="noreferrer">GitHub</a></nav>
+    </div>
+  </header>
+  <main id="main" class="guide-main">
+    <section class="guide-hero">
+      <div class="guide-shell guide-hero-grid">
+        <div class="guide-copy panel" data-reveal>
+          <span class="eyebrow">Install guide</span>
+          <h1>如何在 Windows x64 安裝 AiyoPerps</h1>
+          <p class="lead">這篇教學針對一般桌面使用者，帶你從 GitHub Releases 下載 Windows x64 版本，完成解壓、啟動與基本驗證。</p>
+        </div>
+        <aside class="guide-summary panel" data-reveal>
+          <div><strong>適用對象</strong><p>第一次安裝 AiyoPerps 的 Windows 桌面使用者</p></div>
+          <div><strong>預估時間</strong><p>約 5 到 10 分鐘</p></div>
+          <div><strong>完成後你會得到</strong><p>可正常啟動的 AiyoPerps 桌面版環境</p></div>
+        </aside>
+      </div>
+    </section>
+    <div class="guide-shell guide-layout">
+      <aside class="guide-sidebar">
+        <div class="sidebar-group"><h2>本頁內容</h2><a href="#requirements">前置需求</a><a href="#step-1">步驟 1 下載</a><a href="#step-2">步驟 2 解壓</a><a href="#step-3">步驟 3 啟動</a><a href="#verify">驗證</a><a href="#next">下一步</a></div>
+        <div class="sidebar-group"><h2>其他安裝方式</h2><a href="/guides/install/linux-x64/">Linux x64</a><a href="/guides/install/docker-headless/">Docker headless</a></div>
+      </aside>
+      <div class="guide-content">
+        <section id="requirements" class="guide-section" data-reveal>
+          <span class="eyebrow">Requirements</span><h2>前置需求</h2>
+          <ul><li>Windows x64 環境</li><li>可存取 GitHub Releases</li><li>有權限解壓縮到本機資料夾</li></ul>
+          <div class="callout"><p>建議把程式解壓在你容易找到的位置，例如 `C:\Apps\AiyoPerps` 或使用者目錄下的工具資料夾。</p></div>
+        </section>
+        <section id="step-1" class="guide-step" data-reveal>
+          <div class="step-head"><div><span class="step-badge">1</span><h3>下載 Windows x64 發行版</h3></div><span class="filename-chip">aiyoperps-install-windows-x64-step-01-download-release.png</span></div>
+          <p>前往 GitHub Releases，找到對應的 Windows x64 發行壓縮檔並下載到本機。</p>
+          <div class="screenshot-grid">
+            <article class="screenshot-panel"><a class="screenshot-link" data-lightbox-link data-lightbox-caption="Windows 安裝步驟 1：下載 release 頁面" data-lightbox-alt="Windows x64 release download placeholder" href="/assets/images/guides/guide-screenshot-placeholder.svg"><img src="/assets/images/guides/guide-screenshot-placeholder.svg" alt="Windows x64 release download placeholder"></a><p>建議放置：GitHub Releases 頁面與對應資產列。</p></article>
+          </div>
+        </section>
+        <section id="step-2" class="guide-step" data-reveal>
+          <div class="step-head"><div><span class="step-badge">2</span><h3>解壓到固定資料夾</h3></div><span class="filename-chip">aiyoperps-install-windows-x64-step-02-extract-files.png</span></div>
+          <p>把下載的壓縮檔完整解壓，確認資料夾內包含主程式與相依檔案，不要只解出單一執行檔。</p>
+          <div class="screenshot-grid">
+            <article class="screenshot-panel"><a class="screenshot-link" data-lightbox-link data-lightbox-caption="Windows 安裝步驟 2：解壓後資料夾內容" data-lightbox-alt="Windows extracted files placeholder" href="/assets/images/guides/guide-screenshot-placeholder.svg"><img src="/assets/images/guides/guide-screenshot-placeholder.svg" alt="Windows extracted files placeholder"></a><p>建議放置：檔案總管中解壓後的資料夾內容。</p></article>
+          </div>
+        </section>
+        <section id="step-3" class="guide-step" data-reveal>
+          <div class="step-head"><div><span class="step-badge">3</span><h3>啟動 AiyoPerps.exe</h3></div><span class="filename-chip">aiyoperps-install-windows-x64-step-03-launch-app.png</span></div>
+          <p>在解壓後的資料夾中執行 `AiyoPerps.exe`。第一次啟動時，如果系統安全提示出現，請確認來源後允許執行。</p>
+          <div class="code-block"><code>AiyoPerps.exe</code></div>
+          <div class="screenshot-grid">
+            <article class="screenshot-panel"><a class="screenshot-link" data-lightbox-link data-lightbox-caption="Windows 安裝步驟 3：首次啟動畫面" data-lightbox-alt="Windows first launch placeholder" href="/assets/images/guides/guide-screenshot-placeholder.svg"><img src="/assets/images/guides/guide-screenshot-placeholder.svg" alt="Windows first launch placeholder"></a><p>建議放置：首次啟動後的主畫面或歡迎狀態。</p></article>
+          </div>
+        </section>
+        <section id="verify" class="guide-section" data-reveal>
+          <span class="eyebrow">Verify</span><h2>如何確認安裝成功</h2>
+          <ul><li>主視窗可以正常打開</li><li>沒有立即崩潰或缺檔錯誤</li><li>可看到主要工作區與上方工具列</li></ul>
+        </section>
+        <section id="next" class="guide-section" data-reveal>
+          <span class="eyebrow">Next step</span><h2>下一步</h2>
+          <div class="guide-nav-grid">
+            <article class="guide-nav-card"><h3>接著學 Windows 桌面操作</h3><p>安裝完成後，下一篇應該是建立帳號、開新 tab 與進入交易工作區。</p><a class="button button-primary" href="/guides/desktop/windows/">前往 Windows 操作教學</a></article>
+            <article class="guide-nav-card"><h3>改看其他安裝方式</h3><p>如果你其實只需要 API / MCP，可直接改走 Docker headless 流程。</p><a class="button button-secondary" href="/guides/install/docker-headless/">查看 Docker headless</a></article>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+  <div class="lightbox" data-lightbox aria-hidden="true"><div class="lightbox-dialog"><div class="lightbox-head"><p data-lightbox-caption>Screenshot preview</p><button class="lightbox-close" data-lightbox-close type="button" aria-label="關閉大圖">×</button></div><img data-lightbox-image alt=""></div></div>
+  <footer class="site-footer"><div class="shell footer-inner"><p>© AiyoPerps. Official Windows x64 installation guide.</p><div class="lang-switch"><a class="active" href="/guides/install/windows-x64/">Windows x64</a><a href="/guides/">教學首頁</a></div></div></footer>
+  <script src="/assets/site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<svg width="1280" height="800" viewBox="0 0 1280 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="800" rx="40" fill="#0C1622"/>
+  <rect x="40" y="40" width="1200" height="720" rx="28" fill="#101D2B" stroke="#223648" stroke-width="2"/>
+  <rect x="88" y="96" width="340" height="26" rx="13" fill="#1C3144"/>
+  <rect x="88" y="146" width="620" height="18" rx="9" fill="#183246"/>
+  <rect x="88" y="182" width="480" height="18" rx="9" fill="#183246"/>
+  <rect x="88" y="246" width="780" height="340" rx="24" fill="#0B121C" stroke="#223648" stroke-width="2" stroke-dasharray="10 12"/>
+  <rect x="908" y="246" width="284" height="154" rx="24" fill="#0B121C" stroke="#223648" stroke-width="2"/>
+  <rect x="908" y="432" width="284" height="154" rx="24" fill="#0B121C" stroke="#223648" stroke-width="2"/>
+  <rect x="88" y="626" width="220" height="52" rx="26" fill="#67F0B4"/>
+  <text x="640" y="396" fill="#A7B7C8" font-family="Arial, sans-serif" font-size="32" font-weight="700" text-anchor="middle">Screenshot placeholder</text>
+  <text x="640" y="438" fill="#7E94A9" font-family="Arial, sans-serif" font-size="22" text-anchor="middle">Replace with a real product capture later</text>
+  <text x="162" y="660" fill="#071116" font-family="Arial, sans-serif" font-size="22" font-weight="700" text-anchor="middle">Thumbnail preview</text>
+</svg>
