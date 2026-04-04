@@ -58,3 +58,51 @@ if (lightbox) {
         }
     });
 }
+
+document.querySelectorAll(".code-block").forEach((block, index) => {
+    if (block.querySelector(".code-toolbar")) {
+        return;
+    }
+
+    const title = block.dataset.codeTitle || "code";
+    const code = block.querySelector("code");
+
+    if (!code) {
+        return;
+    }
+
+    const toolbar = document.createElement("div");
+    toolbar.className = "code-toolbar";
+
+    const titleBadge = document.createElement("span");
+    titleBadge.className = "code-title";
+    titleBadge.textContent = title;
+
+    const copyButton = document.createElement("button");
+    copyButton.className = "code-copy";
+    copyButton.type = "button";
+    copyButton.setAttribute("aria-label", `Copy ${title} code`);
+    copyButton.innerHTML = `
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M9 9.75A2.25 2.25 0 0 1 11.25 7.5h7.5A2.25 2.25 0 0 1 21 9.75v9A2.25 2.25 0 0 1 18.75 21h-7.5A2.25 2.25 0 0 1 9 18.75v-9Z" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M15 7.5V5.25A2.25 2.25 0 0 0 12.75 3h-7.5A2.25 2.25 0 0 0 3 5.25v9A2.25 2.25 0 0 0 5.25 16.5H9" stroke="currentColor" stroke-width="1.5"/>
+        </svg>`;
+
+    copyButton.addEventListener("click", async () => {
+        try {
+            await navigator.clipboard.writeText(code.textContent.trim());
+            copyButton.classList.add("is-copied");
+            copyButton.setAttribute("aria-label", "Copied");
+            window.setTimeout(() => {
+                copyButton.classList.remove("is-copied");
+                copyButton.setAttribute("aria-label", `Copy ${title} code`);
+            }, 1600);
+        } catch {
+            copyButton.setAttribute("aria-label", "Copy failed");
+        }
+    });
+
+    toolbar.append(titleBadge, copyButton);
+    block.prepend(toolbar);
+    block.dataset.codeEnhanced = String(index);
+});
