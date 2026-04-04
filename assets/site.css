@@ -42,8 +42,18 @@ img {
 }
 
 a {
-    color: inherit;
-    text-decoration: none;
+    color: #8df2c5;
+    text-decoration-line: underline;
+    text-decoration-color: rgba(103, 240, 180, 0.34);
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 0.2em;
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+a:hover,
+a:focus-visible {
+    color: #c6ffe4;
+    text-decoration-color: rgba(167, 255, 209, 0.88);
 }
 
 .shell {
@@ -119,16 +129,38 @@ a {
 }
 
 .nav a,
-.lang-switch a {
+.lang-switch a,
+.brand,
+.button,
+.screenshot-link,
+.filename-chip,
+.sidebar-group a,
+.guide-inline-list a {
     color: var(--muted);
+    text-decoration: none;
     font-size: 0.95rem;
 }
 
 .nav a:hover,
 .lang-switch a:hover,
 .nav a:focus-visible,
-.lang-switch a:focus-visible {
+.lang-switch a:focus-visible,
+.sidebar-group a:hover,
+.sidebar-group a:focus-visible,
+.guide-inline-list a:hover,
+.guide-inline-list a:focus-visible {
     color: var(--text);
+}
+
+.button:hover,
+.button:focus-visible,
+.brand:hover,
+.brand:focus-visible,
+.screenshot-link:hover,
+.screenshot-link:focus-visible,
+.filename-chip:hover,
+.filename-chip:focus-visible {
+    text-decoration: none;
 }
 
 .lang-switch {

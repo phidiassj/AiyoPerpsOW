@@ -19,11 +19,55 @@
   <main id="main" class="guide-main">
     <section class="guide-hero"><div class="guide-shell guide-hero-grid"><div class="guide-copy panel" data-reveal><span class="eyebrow">Install guide</span><h1>如何在 Linux x64 安裝 AiyoPerps</h1><p class="lead">這篇頁面整理 Linux x64 版本的下載、解壓、授權與啟動流程，適合 Linux 桌面或工作站使用者。</p></div><aside class="guide-summary panel" data-reveal><div><strong>適用對象</strong><p>Linux x64 使用者</p></div><div><strong>預估時間</strong><p>約 10 分鐘</p></div><div><strong>完成後你會得到</strong><p>可在 Linux 直接啟動的桌面版環境</p></div></aside></div></section>
     <div class="guide-shell guide-layout">
-      <aside class="guide-sidebar"><div class="sidebar-group"><h2>本頁內容</h2><a href="#requirements">前置需求</a><a href="#step-1">步驟 1 下載</a><a href="#step-2">步驟 2 解壓與權限</a><a href="#step-3">步驟 3 啟動</a><a href="#verify">驗證</a></div></aside>
+      <aside class="guide-sidebar">
+        <div class="sidebar-group">
+          <h2>本頁內容</h2>
+          <a href="#requirements">前置需求</a>
+          <a href="#step-1">步驟 1 下載</a><a href="#step-2">步驟 2 解壓與權限</a>
+          <a href="#step-3">步驟 3 啟動</a><a href="#verify">驗證</a>
+        </div>
+      </aside>
       <div class="guide-content">
-        <section id="requirements" class="guide-section" data-reveal><span class="eyebrow">Requirements</span><h2>前置需求</h2><ul><li>Linux x64 環境</li><li>可使用終端機</li><li>有權限修改檔案執行權限</li></ul></section>
-        <section id="step-1" class="guide-step" data-reveal><div class="step-head"><div><span class="step-badge">1</span><h3>下載 Linux x64 發行檔</h3></div><span class="filename-chip">aiyoperps-install-linux-x64-step-01-download-release.png</span></div><p>前往 GitHub Releases，下載 Linux x64 對應的壓縮檔到本機或伺服器工作目錄。</p><div class="screenshot-grid"><article class="screenshot-panel"><a class="screenshot-link" data-lightbox-link data-lightbox-caption="Linux 安裝步驟 1：release 下載頁面" data-lightbox-alt="Linux release download placeholder" href="/assets/images/guides/guide-screenshot-placeholder.svg"><img src="/assets/images/guides/guide-screenshot-placeholder.svg" alt="Linux release download placeholder"></a><p>建議放置：release 資產列或下載後的檔案所在位置。</p></article></div></section>
-        <section id="step-2" class="guide-step" data-reveal><div class="step-head"><div><span class="step-badge">2</span><h3>解壓並設定執行權限</h3></div><span class="filename-chip">aiyoperps-install-linux-x64-step-02-extract-and-chmod.png</span></div><p>把壓縮檔解開後，進入資料夾並為主程式加上執行權限。</p><div class="code-block"><code>tar -xf aiyoperps-linux-x64.tar.gz
+        <section id="requirements" class="guide-section" data-reveal>
+          <span class="eyebrow">Requirements</span>
+          <h2>前置需求</h2>
+          <ul>
+            <li>Linux x64 桌面環境</li>
+            <li>可使用終端機(命令列)</li>
+            <li>有權限修改檔案執行權限</li>
+          </ul>
+        </section>
+        <section id="step-1" class="guide-step" data-reveal>
+          <div class="step-head">
+            <div>
+              <h3><span class="step-badge">1</span>使用 AppImage 安裝 (推薦)</h3>
+            </div>
+            <span class="filename-chip">aiyoperps-install-linux-x64-step-01-download-release.png</span>
+          </div>
+          <p>在有寫入及執行權限的路徑開啟終端機，使用如下命令安裝最新版本並執行。</p>
+          <div class="code-block">
+            <code>wget https://github.com/phidiassj/AiyoPerps/releases/latest/download/AiyoPerps-x86_64.AppImage
+chmod +x AiyoPerps-2026.04.03-x86_64.AppImage
+./AiyoPerps-2026.04.03-x86_64.AppImage
+            </code>
+          </div>
+          <div class="screenshot-grid">
+            <article class="screenshot-panel">
+              <a class="screenshot-link" data-lightbox-link data-lightbox-caption="Linux 安裝步驟 1：release 下載頁面" data-lightbox-alt="Linux release download placeholder" href="/assets/images/guides/guide-screenshot-placeholder.svg">
+                <img src="/assets/images/guides/guide-screenshot-placeholder.svg" alt="Linux release download placeholder">
+              </a>
+            </article>
+          </div>
+        </section>
+        <section id="step-2" class="guide-step" data-reveal>
+          <div class="step-head">
+            <div>
+              <span class="step-badge">2</span><h3>解壓並設定執行權限</h3>
+            </div>
+            <span class="filename-chip">aiyoperps-install-linux-x64-step-02-extract-and-chmod.png</span>
+          </div>
+          <p>把壓縮檔解開後，進入資料夾並為主程式加上執行權限。</p>
+          <div class="code-block"><code>tar -xf aiyoperps-linux-x64.tar.gz
 cd AiyoPerps
 chmod +x AiyoPerps</code></div><div class="screenshot-grid"><article class="screenshot-panel"><a class="screenshot-link" data-lightbox-link data-lightbox-caption="Linux 安裝步驟 2：終端機解壓與 chmod" data-lightbox-alt="Linux chmod placeholder" href="/assets/images/guides/guide-screenshot-placeholder.svg"><img src="/assets/images/guides/guide-screenshot-placeholder.svg" alt="Linux chmod placeholder"></a><p>建議放置：終端機完成解壓與 `chmod +x` 後的畫面。</p></article></div></section>
         <section id="step-3" class="guide-step" data-reveal><div class="step-head"><div><span class="step-badge">3</span><h3>啟動程式</h3></div><span class="filename-chip">aiyoperps-install-linux-x64-step-03-launch-app.png</span></div><p>在資料夾中執行主程式，確認桌面版視窗能正常開啟。</p><div class="code-block"><code>./AiyoPerps</code></div><div class="screenshot-grid"><article class="screenshot-panel"><a class="screenshot-link" data-lightbox-link data-lightbox-caption="Linux 安裝步驟 3：成功啟動主畫面" data-lightbox-alt="Linux app launch placeholder" href="/assets/images/guides/guide-screenshot-placeholder.svg"><img src="/assets/images/guides/guide-screenshot-placeholder.svg" alt="Linux app launch placeholder"></a><p>建議放置：Linux 桌面上成功啟動 AiyoPerps 的主視窗。</p></article></div></section>
