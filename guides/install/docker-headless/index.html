@@ -15,21 +15,123 @@
 </head>
 <body>
   <a class="skip-link" href="#main">跳到主要內容</a>
-  <header class="site-header"><div class="shell"><a class="brand" href="/"><img src="/assets/images/logo.png" alt="AiyoPerps logo" width="42" height="42"><span><small>Official Website</small>AiyoPerps</span></a><nav class="nav" aria-label="主要導覽"><a href="/guides/">教學首頁</a><a href="/guides/install/windows-x64/">Windows</a><a href="/guides/install/linux-x64/">Linux</a><a href="https://github.com/phidiassj/AiyoPerps" target="_blank" rel="noreferrer">GitHub</a></nav></div></header>
+  <header class="site-header">
+    <div class="shell">
+      <a class="brand" href="/">
+        <img src="/assets/images/logo.png" alt="AiyoPerps logo" width="42" height="42" />
+        <span><small>Official Website</small>AiyoPerps</span>
+      </a>
+      <nav class="nav" aria-label="主要導覽">
+        <a href="/guides/">教學首頁</a>
+        <a href="/guides/install/windows-x64/">Windows</a>
+        <a href="/guides/install/linux-x64/">Linux</a>
+        <a href="https://github.com/phidiassj/AiyoPerps" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </header>
   <main id="main" class="guide-main">
-    <section class="guide-hero"><div class="guide-shell guide-hero-grid"><div class="guide-copy panel" data-reveal><span class="eyebrow">Install guide</span><h1>如何用 Docker 啟動 AiyoPerps Headless</h1><p class="lead">如果你只需要本機 REST API 與 MCP，而不需要桌面 GUI，這篇頁面會帶你直接用 Docker 啟動 AiyoPerps 的 headless 模式。</p></div><aside class="guide-summary panel" data-reveal><div><strong>適用對象</strong><p>只需要 API / MCP 的使用者與自動化節點</p></div><div><strong>預估時間</strong><p>約 5 分鐘</p></div><div><strong>完成後你會得到</strong><p>對外提供 `5078` 埠號的 headless 容器</p></div></aside></div></section>
+    <section class="guide-hero">
+      <div class="guide-shell guide-hero-grid">
+        <div class="guide-copy panel" data-reveal>
+          <span class="eyebrow">Install guide</span>
+          <h1>如何用 Docker 啟動 AiyoPerps Headless</h1>
+          <p class="lead">如果你只需要本機 REST API 與 MCP，而不需要桌面 GUI，這篇頁面會帶你直接用 Docker 啟動 AiyoPerps 的 headless 模式。</p>
+        </div>
+        <aside class="guide-summary panel" data-reveal>
+          <div>
+            <strong>適用對象</strong>
+            <p>Mac 使用者<br />只使用 AI Agent 操作 (無 GUI 介面)<br />只需要 API / MCP 與自動化節點</p>
+          </div>
+          <div>
+            <strong>預估時間</strong><p>約 5 分鐘</p></div><div><strong>完成後你會得到</strong>
+              <p>對外提供 `5078` 埠號的 headless 容器</p>
+            </div>
+          </aside>
+        </div>
+      </section>
     <div class="guide-shell guide-layout">
-      <aside class="guide-sidebar"><div class="sidebar-group"><h2>本頁內容</h2><a href="#requirements">前置需求</a><a href="#step-1">步驟 1 拉起容器</a><a href="#step-2">步驟 2 檢查埠號</a><a href="#step-3">步驟 3 驗證 API</a><a href="#next">下一步</a></div></aside>
+      <aside class="guide-sidebar">
+        <div class="sidebar-group">
+          <h2>本頁內容</h2>
+          <a href="#requirements">前置需求</a>
+          <a href="#step-1">步驟 1 拉起容器</a>
+          <a href="#step-2">步驟 2 檢查埠號</a>
+          <a href="#step-3">步驟 3 驗證 API</a>
+          <a href="#next">下一步</a>
+        </div>
+      </aside>
       <div class="guide-content">
-        <section id="requirements" class="guide-section" data-reveal><span class="eyebrow">Requirements</span><h2>前置需求</h2><ul><li>已安裝 Docker</li><li>可開放本機 `5078` 埠號</li><li>需要 REST API 或 MCP 連接能力</li></ul></section>
-        <section id="step-1" class="guide-step" data-reveal><div class="step-head"><div><span class="step-badge">1</span><h3>使用 docker run 啟動容器</h3></div><span class="filename-chip">aiyoperps-install-docker-headless-step-01-run-container.png</span></div><p>官方 README 目前提供的方式是直接啟動最新映像並將本機 `5078` 映射進容器。</p><div class="code-block" data-code-title="bash"><code>docker run --rm --name aiyoperps -p 5078:5078 phidiassj/aiyoperps:latest</code></div><div class="screenshot-grid"><article class="screenshot-panel"><a class="screenshot-link" data-lightbox-link data-lightbox-caption="Docker headless 步驟 1：執行 docker run" data-lightbox-alt="Docker run placeholder" href="/assets/images/guides/guide-screenshot-placeholder.svg"><img src="/assets/images/guides/guide-screenshot-placeholder.svg" alt="Docker run placeholder"></a><p>建議放置：終端機輸入 `docker run` 後成功啟動的畫面。</p></article></div></section>
-        <section id="step-2" class="guide-step" data-reveal><div class="step-head"><div><span class="step-badge">2</span><h3>確認容器與埠號狀態</h3></div><span class="filename-chip">aiyoperps-install-docker-headless-step-02-check-container-status.png</span></div><p>確認容器正在執行，並且 `5078` 已經正確綁定到本機。</p><div class="code-block" data-code-title="bash"><code>docker ps</code></div><div class="screenshot-grid"><article class="screenshot-panel"><a class="screenshot-link" data-lightbox-link data-lightbox-caption="Docker headless 步驟 2：docker ps 檢查容器" data-lightbox-alt="Docker container status placeholder" href="/assets/images/guides/guide-screenshot-placeholder.svg"><img src="/assets/images/guides/guide-screenshot-placeholder.svg" alt="Docker container status placeholder"></a><p>建議放置：`docker ps` 顯示對應容器與 `0.0.0.0:5078->5078` 對應。</p></article></div></section>
-        <section id="step-3" class="guide-step" data-reveal><div class="step-head"><div><span class="step-badge">3</span><h3>驗證 OpenAPI 或 MCP 端點</h3></div><span class="filename-chip">aiyoperps-install-docker-headless-step-03-verify-scalar-or-mcp.png</span></div><p>在瀏覽器開啟 OpenAPI UI，或直接對 MCP 端點做連線測試。只要頁面能打開，就表示 headless 服務正常。</p><div class="guide-inline-list"><a href="http://127.0.0.1:5078/scalar">http://127.0.0.1:5078/scalar</a><a href="http://127.0.0.1:5078/mcp">http://127.0.0.1:5078/mcp</a></div><div class="screenshot-grid"><article class="screenshot-panel"><a class="screenshot-link" data-lightbox-link data-lightbox-caption="Docker headless 步驟 3：OpenAPI UI 或 MCP 驗證畫面" data-lightbox-alt="Docker scalar page placeholder" href="/assets/images/guides/guide-screenshot-placeholder.svg"><img src="/assets/images/guides/guide-screenshot-placeholder.svg" alt="Docker scalar page placeholder"></a><p>建議放置：瀏覽器中成功打開 `scalar` 或相關 API 驗證畫面。</p></article></div></section>
+        <section id="requirements" class="guide-section" data-reveal>
+          <span class="eyebrow">Requirements</span>
+          <h2>前置需求</h2>
+          <ul>
+            <li>已安裝 Docker</li>
+            <li>可開放本機 `5078` 埠號</li>
+            <li>需要 REST API 或 MCP 連接能力</li>
+          </ul>
+        </section>
+        <section id="step-1" class="guide-step" data-reveal>
+          <div class="step-head">
+            <div><h3><span class="step-badge">1</span>使用 docker run 啟動容器</h3></div>
+          </div>
+          <p>官方 README 目前提供的方式是直接啟動最新映像並將本機 `5078` 映射進容器。</p>
+          <div class="code-block" data-code-title="bash | ps | docker cli">
+            <code>docker run --rm --name aiyoperps -p 5078:5078 phidiassj/aiyoperps:latest</code>
+          </div>
+          <div class="screenshot-grid">
+            <article class="screenshot-panel">
+              <a class="screenshot-link" data-lightbox-link data-lightbox-caption="Docker headless 步驟 1：執行 docker run" data-lightbox-alt="Docker run placeholder" href="/assets/images/guides/aiyoperps-install-docker-headless-step-01-run-container.png">
+                <img src="/assets/images/guides/aiyoperps-install-docker-headless-step-01-run-container.png" alt="Docker run placeholder" />
+              </a>
+            </article>
+          </div>
+        </section>
+        <section id="step-2" class="guide-step" data-reveal>
+          <div class="step-head">
+            <div><h3><span class="step-badge">2</span>確認容器與埠號狀態</h3></div>
+          </div>
+          <p>確認容器正在執行，並且 `5078` 已經正確綁定到本機。</p>
+          <div class="code-block" data-code-title="bash | ps | docker cli">
+            <code>docker ps</code>
+          </div>
+          <div class="screenshot-grid">
+            <article class="screenshot-panel">
+              <a class="screenshot-link" data-lightbox-link data-lightbox-caption="Docker headless 步驟 2：docker ps 檢查容器" data-lightbox-alt="Docker container status placeholder" href="/assets/images/guides/aiyoperps-install-docker-headless-step-02-check-container-status.png">
+                <img src="/assets/images/guides/aiyoperps-install-docker-headless-step-02-check-container-status.png" alt="Docker container status placeholder" />
+              </a>
+            </article>
+          </div>
+        </section>
+        <section id="step-3" class="guide-step" data-reveal>
+          <div class="step-head">
+            <div><h3><span class="step-badge">3</span>驗證 OpenAPI 或 MCP 端點</h3></div>
+          </div>
+          <p>在瀏覽器開啟 OpenAPI UI，或直接對 MCP 端點做連線測試。只要頁面能打開，就表示 headless 服務正常。</p>
+          <div class="guide-inline-list">
+            <a href="http://127.0.0.1:5078/scalar">http://127.0.0.1:5078/scalar</a>
+            <a href="http://127.0.0.1:5078/mcp">http://127.0.0.1:5078/mcp</a>
+          </div>
+          <div class="screenshot-grid">
+            <article class="screenshot-panel">
+              <a class="screenshot-link" data-lightbox-link data-lightbox-caption="Docker headless 步驟 3：OpenAPI UI 或 MCP 驗證畫面" data-lightbox-alt="Docker scalar page placeholder" href="/assets/images/guides/aiyoperps-install-docker-headless-step-03-verify-scalar-or-mcp.png">
+                <img src="/assets/images/guides/aiyoperps-install-docker-headless-step-03-verify-scalar-or-mcp.png" alt="Docker scalar page placeholder">
+              </a>
+            </article>
+          </div>
+        </section>
         <section id="next" class="guide-section" data-reveal><span class="eyebrow">Next step</span><h2>下一步</h2><div class="guide-nav-grid"><article class="guide-nav-card"><h3>連接 AI Agent</h3><p>完成 headless 服務後，下一步通常是把 MCP 接到你的 AI Agent 工作流。</p><a class="button button-primary" href="/#features">回首頁查看 MCP 能力</a></article><article class="guide-nav-card"><h3>改走桌面版？</h3><p>如果你後來需要圖形化操作，請改看 Windows 或 Linux 安裝頁。</p><a class="button button-secondary" href="/guides/install/windows-x64/">查看 Windows 安裝</a></article></div></section>
       </div>
     </div>
   </main>
-  <div class="lightbox" data-lightbox aria-hidden="true"><div class="lightbox-dialog"><div class="lightbox-head"><p data-lightbox-caption>Screenshot preview</p><button class="lightbox-close" data-lightbox-close type="button" aria-label="關閉大圖">×</button></div><img data-lightbox-image alt=""></div></div>
+  <div class="lightbox" data-lightbox aria-hidden="true">
+    <div class="lightbox-dialog">
+      <div class="lightbox-head">
+        <p data-lightbox-caption>Screenshot preview</p>
+        <button class="lightbox-close" data-lightbox-close type="button" aria-label="關閉大圖">×</button>
+      </div>
+      <img data-lightbox-image alt="">
+    </div>
+  </div>
   <footer class="site-footer"><div class="shell footer-inner"><p>© AiyoPerps. Official Docker headless installation guide.</p><div class="lang-switch"><a class="active" href="/guides/install/docker-headless/">Docker</a><a href="/guides/">教學首頁</a></div></div></footer>
   <script src="/assets/site.js" defer></script>
 </body>
