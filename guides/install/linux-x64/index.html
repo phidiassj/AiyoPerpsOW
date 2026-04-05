@@ -25,7 +25,7 @@
           <a href="#requirements">前置需求</a>
           <a href="#step-1">使用 AppImage 安裝 (推薦)</a>
           <a href="#step-2">使用 NPM 安裝</a>
-          <a href="#step-3">步驟 3 啟動</a>
+          <a href="#step-3">自行下載安裝</a>
           <a href="#verify">驗證</a>
         </div>
       </aside>
@@ -57,8 +57,8 @@
           </div>
           <div class="screenshot-grid">
             <article class="screenshot-panel">
-              <a class="screenshot-link" data-lightbox-link data-lightbox-caption="Linux 安裝方式 1：AppImage 指令碼" data-lightbox-alt="Linux 安裝方式 1：AppImage 指令碼" href="/assets/images/guides/aiyoperps-install-linux-x64-appimage.png">
-                <img src="/assets/images/guides/aiyoperps-install-linux-x64-appimage.png" alt="Linux 安裝方式 1：AppImage 指令碼" />
+              <a class="screenshot-link" data-lightbox-link data-lightbox-caption="Linux AppImage 指令碼" data-lightbox-alt="Linux AppImage 指令碼" href="/assets/images/guides/aiyoperps-install-linux-x64-appimage.png">
+                <img src="/assets/images/guides/aiyoperps-install-linux-x64-appimage.png" alt="Linux AppImage 指令碼" />
               </a>
             </article>
             <article class="screenshot-panel">
@@ -73,11 +73,14 @@
             <div>
               <h3><span class="step-badge">2</span>使用 NPM 安裝</h3>
             </div>
-            <span class="filename-chip">aiyoperps-install-linux-x64-step-02-extract-and-chmod.png</span>
           </div>
-          <p>把壓縮檔解開後，進入資料夾並為主程式加上執行權限。</p>
-          <div class="code-block" data-code-title="bash">
-            <code></code>
+          <p>請注意 NPM 版本有可能稍微落後。<br />安裝後 AiyoPerps 會在 app 子路徑內，可以自行移動到有執行權限的資料夾。</p>
+          <div class="code-block" data-code-title="安裝 Node.js">
+            <code>apt update
+apt install -y nodejs npm</code>
+          </div>
+          <div class="code-block" data-code-title="NPM 安裝">
+            <code>npm install @phidiassj/aiyoperps-linux64</code>
           </div>
           <div class="screenshot-grid">
             <article class="screenshot-panel">
@@ -91,9 +94,7 @@
         <section id="step-3" class="guide-step" data-reveal>
           <div class="step-head">
             <div><h3><span class="step-badge">3</span>自行下載安裝</h3></div>
-            <span class="filename-chip">aiyoperps-install-linux-x64-step-03-launch-app.png</span>
           </div>
-          <p>在資料夾中執行主程式，確認桌面版視窗能正常開啟。</p>
           <div class="code-block" data-code-title="下載 Linux-x64 最新版本">
             <code>wget https://github.com/phidiassj/AiyoPerps/releases/latest/download/linux-x64.zip</code>
           </div>
