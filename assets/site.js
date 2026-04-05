@@ -13,17 +13,20 @@ const observer = new IntersectionObserver(
 document.querySelectorAll("[data-reveal]").forEach(element => observer.observe(element));
 
 const lightbox = document.querySelector("[data-lightbox]");
-const lightboxImage = document.querySelector("[data-lightbox-image]");
-const lightboxCaption = document.querySelector("[data-lightbox-caption]");
-const lightboxClose = document.querySelector("[data-lightbox-close]");
+const lightboxImage = lightbox?.querySelector("[data-lightbox-image]") || null;
+const lightboxCaption = lightbox?.querySelector("[data-lightbox-caption]") || null;
+const lightboxClose = lightbox?.querySelector("[data-lightbox-close]") || null;
 
 function closeLightbox() {
-    if (!lightbox) {
+    if (!lightbox || !lightboxImage || !lightboxCaption) {
         return;
     }
 
     lightbox.classList.remove("is-open");
     lightbox.setAttribute("aria-hidden", "true");
+    lightboxCaption.textContent = "Screenshot preview";
+    lightboxImage.removeAttribute("src");
+    lightboxImage.alt = "";
 }
 
 document.querySelectorAll("[data-lightbox-link]").forEach(link => {
