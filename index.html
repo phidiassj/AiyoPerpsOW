@@ -67,50 +67,45 @@
             <a class="button button-secondary" href="/guides/">查看安裝教學</a>
           </div>
           <div class="meta-list">
-            <div class="meta-card"><strong>CEX + DEX</strong><span>支援中心化與去中心化永續合約場景</span></div>
-            <div class="meta-card"><strong>MCP + REST</strong><span>適合 AI Agent、腳本與本機工具鏈</span></div>
-            <div class="meta-card"><strong>Headless</strong><span>只開 API，不必顯示圖形介面</span></div>
+            <div class="meta-card"><strong>CEX + DEX</strong><span>支援中心化與去中心化永續合約交易所</span></div>
+            <div class="meta-card"><strong>GUI Dashboard</strong><span>在同一介面管理多家交易所的持倉</span></div>
+            <div class="meta-card"><strong>MCP + REST</strong><span>主動呼叫 AI Agent 或被動等待 AI Agent 呼叫</span></div>
+            <div class="meta-card"><strong>Headless</strong><span>可以只開 MCP / API，不必顯示圖形介面</span></div>
           </div>
+          <div class="chip-row"><span class="chip">Manual trading</span><span class="chip">AI collaboration</span><span class="chip">Autonomous agent</span></div>
         </div>
         <div class="panel hero-visual" data-reveal>
           <img class="orbital-art" src="./assets/images/hero-ai.webp" alt="AiyoPerps 未來感交易控制中心主視覺" width="1536" height="1024">
-          <div class="terminal-card">
-            <div class="terminal-head" aria-hidden="true"><span></span><span></span><span></span></div>
-            <code>npx -y @phidiassj/aiyoperps-mcp-installer
-AiyoPerps.exe -- headless --port 5078
-http://127.0.0.1:5078/mcp</code>
-          </div>
-          <div class="chip-row"><span class="chip">Manual trading</span><span class="chip">AI collaboration</span><span class="chip">Autonomous agent</span></div>
         </div>
       </div>
     </section>
     <section id="features" class="section">
       <div class="shell">
         <div class="section-top" data-reveal">
-          <div><span class="eyebrow">Core capability</span><h2>不是把 AI 貼上去，而是從交易流程底層重新設計</h2></div>
-          <p class="section-copy">網站內容聚焦在官方發行最需要被搜尋到的關鍵字：perps terminal、MCP trading、local API、headless crypto trading。</p>
+          <div><span class="eyebrow">Core capability</span><h2>滿足每一種使用層級的需求</h2></div>
         </div>
         <div class="feature-grid">
           <article class="feature-card" data-reveal><h3>完整桌面工作區</h3><p>整合 K 線、委託簿、下單面板、持倉與訂單視圖，保有手動交易的速度與掌控感。</p></article>
           <article class="feature-card" data-reveal><h3>本機 MCP Server</h3><p>對接 Codex、Claude、Gemini 等 AI Agent，讓代理程式讀行情、查帳戶與協助決策。</p></article>
-          <article class="feature-card" data-reveal><h3>REST API 與 OpenAPI</h3><p>除了 MCP，也能讓內部工具、腳本與自建服務呼叫本機 HTTP API。</p></article>
+          <article class="feature-card" data-reveal><h3>AI Agent 定時喚醒</h3><p>固定時間喚醒 AI Agent 的能力，適合做風險巡檢與半自動作業。</p></article>
+          <article class="feature-card" data-reveal><h3>AI Agent 條件喚醒</h3><p>價位到達、獲利到達等條件主動喚醒 AI Agent，完美實現 AI 風控、交易倫理。</p></article>
+          <article class="feature-card" data-reveal><h3>REST API</h3><p>除了 MCP，也能讓內部工具、腳本與自建服務呼叫本機 HTTP API。</p></article>
           <article class="feature-card" data-reveal><h3>Headless Runtime</h3><p>只需要 API 或 MCP 時，可用 headless 模式啟動，讓桌面程式成為可部署的本機交易服務核心。</p></article>
           <article class="feature-card" data-reveal><h3>多交易所視角</h3><p>官方文件列出的支援平台包含 BitMEX、Hyperliquid、Aster、Grvt 與 dYdX。</p></article>
-          <article class="feature-card" data-reveal><h3>AI Agent 定時喚醒</h3><p>近期更新已加入固定時間喚醒 AI Agent 的能力，適合做風險巡檢與半自動作業。</p></article>
         </div>
         <div class="stat-bar">
           <div class="stat" data-reveal><strong>3 種模式</strong><span>手動、AI 協作、AI 全自動</span></div>
-          <div class="stat" data-reveal><strong>5078</strong><span>預設本機 API / MCP 連接埠</span></div>
+          <div class="stat" data-reveal><strong>5078</strong><span>預設本機 API / MCP 連接埠，不允許外部連接</span></div>
           <div class="stat" data-reveal><strong>Desktop-first</strong><span>不是瀏覽器前端包裝，而是原生桌面操作體驗</span></div>
           <div class="stat" data-reveal><strong>Open source</strong><span>可自行審查、擴充與整合工作流程</span></div>
+          <div class="stat" data-reveal><strong>輕量化</strong><span>VPS、舊電腦，都可以流暢運行</span></div>
         </div>
       </div>
     </section>
     <section id="workflow" class="section">
       <div class="shell">
         <div class="section-top" data-reveal">
-          <div><span class="eyebrow">Workflow</span><h2>從安裝到 AI 接線，五分鐘內進入工作狀態</h2></div>
-          <p class="section-copy">這些步驟與 GitHub README 對齊，降低搜尋流量落地後的流失率。</p>
+          <div><span class="eyebrow">Workflow</span><h2>從安裝到 AI 接入，五分鐘內進入工作狀態</h2></div>
         </div>
         <div class="steps-grid">
           <article class="step-card" data-reveal><h3>1. 安裝應用程式</h3><p>從 GitHub Releases 下載桌面版，Windows 執行 `AiyoPerps.exe`，Linux 使用可執行檔啟動。</p></article>
@@ -123,8 +118,7 @@ http://127.0.0.1:5078/mcp</code>
     <section id="screens" class="section">
       <div class="shell">
         <div class="section-top" data-reveal">
-          <div><span class="eyebrow">Product views</span><h2>用實際畫面說明這不是概念產品</h2></div>
-          <p class="section-copy">站內直接放入現有介面截圖，讓搜尋進站者第一眼就知道目前產品成熟度。</p>
+          <div><span class="eyebrow">Product views</span><h2>實機畫面</h2></div>
         </div>
         <div class="gallery">
           <article class="screenshot-card" data-reveal><img src="./assets/images/main-zh-01.jpg" alt="AiyoPerps 主畫面截圖"><div class="screenshot-copy"><h3>主交易介面</h3><p>桌面版交易工作區整合多個關鍵視圖，適合需要快速判斷與直接操作的交易流程。</p></div></article>
