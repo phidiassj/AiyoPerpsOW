@@ -663,7 +663,7 @@ h1 {
 }
 
 .guide-copy h1 {
-    max-width: 12ch;
+    max-width: 100ch;
 }
 
 .guide-summary {

@@ -74,7 +74,7 @@
           <div class="step-head">
             <div><h3><span class="step-badge">1</span>使用 docker run 啟動容器</h3></div>
           </div>
-          <p>官方 README 目前提供的方式是直接啟動最新映像並將本機 `5078` 映射進容器。</p>
+          <p>使用 Docker 命令可直接啟動最新映像並自動將本機 `5078` 映射進容器。<br />或也可以在 Docker Hub 搜尋 AiyoPerps。</p>
           <div class="code-block" data-code-title="bash | ps | docker cli">
             <code>docker run --rm --name aiyoperps -p 5078:5078 phidiassj/aiyoperps:latest</code>
           </div>
@@ -82,6 +82,11 @@
             <article class="screenshot-panel">
               <a class="screenshot-link" data-lightbox-link data-lightbox-caption="Docker headless 步驟 1：執行 docker run" data-lightbox-alt="Docker run placeholder" href="/assets/images/guides/aiyoperps-install-docker-headless-step-01-run-container.png">
                 <img src="/assets/images/guides/aiyoperps-install-docker-headless-step-01-run-container.png" alt="Docker run placeholder" />
+              </a>
+            </article>
+            <article class="screenshot-panel">
+              <a class="screenshot-link" data-lightbox-link data-lightbox-caption="Docker headless 步驟 1：從 docker hub 搜尋" data-lightbox-alt="Docker run placeholder" href="/assets/images/guides/aiyoperps-install-docker-headless-step-01-search-from-dockerhub.png">
+                <img src="/assets/images/guides/aiyoperps-install-docker-headless-step-01-search-from-dockerhub.png" alt="Docker run placeholder" />
               </a>
             </article>
           </div>
@@ -109,7 +114,6 @@
           <p>在瀏覽器開啟 OpenAPI UI，或直接對 MCP 端點做連線測試。只要頁面能打開，就表示 headless 服務正常。</p>
           <div class="guide-inline-list">
             <a href="http://127.0.0.1:5078/scalar">http://127.0.0.1:5078/scalar</a>
-            <a href="http://127.0.0.1:5078/mcp">http://127.0.0.1:5078/mcp</a>
           </div>
           <div class="screenshot-grid">
             <article class="screenshot-panel">
