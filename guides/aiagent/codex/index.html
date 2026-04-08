@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AiyoPerps AI Agent 安裝及互動指引 | 官方指南</title>
+  <meta name="description" content="設定 AiyoPerps 以多種條件主動喚醒 AI Agent 或被動接受 AI Agent 操作。">
+  <meta name="keywords" content="AiyoPerps AI Agent, AiyoPerps Codex, AiyoPerps MCP 安裝, AiyoPerps AI 互動指引">
+  <link rel="canonical" href="https://perps.aiyo.app/guides/aiagent/codex/">
+  <meta property="og:title" content="AiyoPerps AI Agent 安裝及互動指引 | 官方指南">
+  <meta property="og:description" content="設定 AiyoPerps 以多種條件主動喚醒 AI Agent 或被動接受 AI Agent 操作。">
+  <meta property="og:image" content="https://perps.aiyo.app/assets/images/og-aiyo.jpg">
+  <link rel="icon" type="image/png" href="/assets/images/logo.png">
+  <link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要內容</a>
+    <header class="site-header">
+    <div class="shell">
+      <a class="brand" href="/">
+        <img src="/assets/images/logo.png" alt="AiyoPerps logo" width="42" height="42">
+        <span>
+          <small>Official Website</small>AiyoPerps </span>
+      </a>
+      <nav class="nav" aria-label="主要導覽">
+        <a href="/guides/">教學首頁</a>
+        <a href="/guides/install/linux-x64/">Linux 安裝</a>
+        <a href="/guides/desktop/windows/">Windows 操作</a>
+        <a href="https://github.com/phidiassj/AiyoPerps" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="guide-main">
+    <section class="guide-hero">
+      <div class="guide-shell guide-hero-grid">
+        <div class="guide-copy panel" data-reveal>
+          <span class="eyebrow">Desktop guide</span>
+          <h1>AI Agent 安裝及互動指引</h1>
+          <p class="lead">AiyoPerps 可以設定多種條件主動喚醒 AI Agent 介入操作，也可以被動接受 AI Agent 主導操作，本篇以 OpenAI Codex 為例說明安裝及設定流程。</p>
+        </div>
+        <aside class="guide-summary panel" data-reveal>
+          <div>
+            <strong>適用對象</strong>
+            <p>想要透過 AI Agent 查詢或操作永續合約交易的使用者</p>
+          </div>
+          <div>
+            <strong>預估時間</strong>
+            <p>約 10 到 15 分鐘</p>
+          </div>
+          <div>
+            <strong>完成後你會得到</strong>
+            <p>AiyoPerps 能夠與 AI Agent 循環串聯協作</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+    <div class="guide-shell guide-layout">
+      <aside class="guide-sidebar">
+        <div class="sidebar-group">
+          <h2>本頁內容</h2>
+          <a href="#step-1">安裝 OpenAI Codex CLI</a>
+          <a href="#step-2">安裝 AiyoPerps MCP</a>
+          <a href="#step-3">設定 AI Agent</a>
+          <a href="#next">下一步</a>
+        </div>
+      </aside>
+      <div class="guide-content">
+        <section id="step-1" class="guide-step" data-reveal>
+          <div class="step-head">
+            <div>
+              <h3><span class="step-badge">1</span>安裝 OpenAI Codex CLI</h3>
+            </div>
+          </div>
+          <ul>
+            <li>若系統已安裝 Codex CLI 請略過本步驟</li>
+            <li>Codex App 也可以透過 MCP 操作 AiyoPerps，但無法接受 AiyoPerps 以條件式喚醒，所以建議以 Codex CLI 為主</li>
+            <li>OpenAI 官方建議 Windows 的使用者將 Codex CLI 安裝在 WSL 內會較為順暢。安裝方式請參考 <a href="https://developers.openai.com/codex/cli" target="_blank">OpenAI 官方網站</a></li>
+            <li>執行 Codex CLI，確保可以正常運作</li>
+          </ul>
+          <div class="screenshot-grid">
+            <article class="screenshot-panel">
+              <a class="screenshot-link" data-lightbox-link data-lightbox-caption="OpenAI Codex CLI 啟動並可正常輸入命令的畫面" data-lightbox-alt="OpenAI Codex CLI 啟動並可正常輸入命令的畫面" href="/assets/images/guides/aiyoperps-desktop-aiagent-codex-cli.png">
+                <img src="/assets/images/guides/aiyoperps-desktop-aiagent-codex-cli.png" alt="OpenAI Codex CLI 啟動並可正常輸入命令的畫面">
+              </a>
+            </article>
+          </div>
+        </section>
+        <section id="step-2" class="guide-step" data-reveal>
+          <div class="step-head">
+            <div>
+              <h3><span class="step-badge">2</span>安裝 AiyoPerps MCP</h3>
+            </div>
+          </div>
+          <ul>
+            <li>安裝 AiyoPerps MCP 可以加速 AI Agent 操作需要的時間，節省 token 消耗</li>
+            <li>AiyoPerps MCP 只允許本機連接 (包含 WSL 虛擬網路介面)</li>
+            <li>Linux 及 Windows 皆可使用以下命令安裝 AiyoPerps MCP</li>
+          </ul>
+          <div class="code-block" data-code-title="BASH | PS">
+            <code>npx -y @phidiassj/aiyoperps-mcp-installer</code>
+          </div>
+          <div class="screenshot-grid">
+            <article class="screenshot-panel">
+              <a class="screenshot-link" data-lightbox-link data-lightbox-caption="AiyoPerps MCP installer 在終端機中完成安裝的畫面" data-lightbox-alt="AiyoPerps MCP installer 在終端機中完成安裝的畫面" href="/assets/images/guides/aiyoperps-desktop-aiagent-mcp-installer-cli.png">
+                <img src="/assets/images/guides/aiyoperps-desktop-aiagent-mcp-installer-cli.png" alt="AiyoPerps MCP installer 在終端機中完成安裝的畫面">
+              </a>
+            </article>
+          </div>
+        </section>
+        <section id="step-3" class="guide-step" data-reveal>
+          <div class="step-head">
+            <div>
+              <h3><span class="step-badge">3</span>設定 AI Agent</h3>
+            </div>
+          </div>
+          <ul>
+            <li>點擊 Dashboard 左上方的「代理設定」即可開啟 AI Agent 設定視窗</li>
+            <li>開啟「啟用 AI Agent」讓本介面設定生效</li>
+            <li>「喚醒週期」可設定以分鐘為單位喚醒 AI Agent，設定為 0 關閉定時喚醒</li>
+            <li>「Prompt 樣板」設定您的提示詞，可以是操作策略、資料分析等，可以帶入 MCP 及 Rest API 工具手冊 中的命令及參數</li>
+            <li>「條件喚醒」可設定以價位或持倉獲利率為條件喚醒 AI Agent</li>
+          </ul>
+          <div class="screenshot-grid">
+            <article class="screenshot-panel">
+              <a class="screenshot-link" data-lightbox-link data-lightbox-caption="AiyoPerps Dashboard 中開啟 AI Agent 設定視窗的畫面" data-lightbox-alt="AiyoPerps Dashboard 中開啟 AI Agent 設定視窗的畫面" href="/assets/images/guides/aiyoperps-desktop-aiagent-interface.png">
+                <img src="/assets/images/guides/aiyoperps-desktop-aiagent-interface.png" alt="AiyoPerps Dashboard 中開啟 AI Agent 設定視窗的畫面">
+              </a>
+            </article>
+            <article class="screenshot-panel">
+              <a class="screenshot-link" data-lightbox-link data-lightbox-caption="AiyoPerps AI Agent 的定時喚醒與提示詞設定畫面" data-lightbox-alt="AiyoPerps AI Agent 的定時喚醒與提示詞設定畫面" href="/assets/images/guides/aiyoperps-desktop-aiagent-settings.png">
+                <img src="/assets/images/guides/aiyoperps-desktop-aiagent-settings.png" alt="AiyoPerps AI Agent 的定時喚醒與提示詞設定畫面">
+              </a>
+            </article>
+            <article class="screenshot-panel">
+              <a class="screenshot-link" data-lightbox-link data-lightbox-caption="AiyoPerps AI Agent 的價格與獲利率條件喚醒設定畫面" data-lightbox-alt="AiyoPerps AI Agent 的價格與獲利率條件喚醒設定畫面" href="/assets/images/guides/aiyoperps-desktop-aiagent-conditionals.png">
+                <img src="/assets/images/guides/aiyoperps-desktop-aiagent-conditionals.png" alt="AiyoPerps AI Agent 的價格與獲利率條件喚醒設定畫面">
+              </a>
+            </article>
+          </div>
+        </section>
+        <section id="next" class="guide-section" data-reveal>
+          <span class="eyebrow">Next step</span>
+          <h2>下一步</h2>
+          <div class="guide-nav-grid">
+            <article class="guide-nav-card">
+              <h3>查看 MCP / REST API 工具手冊</h3>
+              <p>設定完 AI Agent 後，下一步通常是查詢可直接放入 prompt 的 MCP tool 名稱與參數。</p>
+              <a class="button button-primary" href="/guides/aiagent/mcp/">前往 MCP / REST API 手冊</a>
+            </article>
+            <article class="guide-nav-card">
+              <h3>回到安裝總覽</h3>
+              <p>如果你要把教學分享給其他同事，教學首頁最適合作為統一入口。</p>
+              <a class="button button-secondary" href="/guides/">返回教學首頁</a>
+            </article>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+  <div class="lightbox" data-lightbox aria-hidden="true">
+    <div class="lightbox-dialog">
+      <div class="lightbox-head">
+        <p data-lightbox-caption>Screenshot preview</p>
+        <button class="lightbox-close" data-lightbox-close type="button" aria-label="關閉大圖">×</button>
+      </div>
+      <img data-lightbox-image alt="">
+    </div>
+  </div>
+  <footer class="site-footer"><div class="shell footer-inner"><p>© AiyoPerps. Official AI agent installation and interaction guide.</p><div class="lang-switch"><a class="active" href="/guides/aiagent/codex/">AI Agent</a><a href="/guides/">教學首頁</a></div></div></footer>
+  <script src="/assets/site.js" defer></script>
+</body>
+</html>

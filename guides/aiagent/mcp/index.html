@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AiyoPerps MCP 及 REST API 工具手冊 | 官方指南</title>
+  <meta name="description" content="完整整理 AiyoPerps 的 MCP tool 名稱、參數說明、REST API 端點與 AI prompt 使用方式，方便直接查詢與套用。">
+  <meta name="keywords" content="AiyoPerps MCP, AiyoPerps REST API, AiyoPerps tools, AiyoPerps prompt, AiyoPerps AI Agent">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://perps.aiyo.app/guides/aiagent/mcp/">
+  <meta property="og:title" content="AiyoPerps MCP 及 REST API 工具手冊 | 官方指南">
+  <meta property="og:description" content="列出所有 AiyoPerps MCP tool 名稱、參數、非同步操作規則與 REST API 快覽，方便直接寫進 AI Agent prompt。">
+  <meta property="og:url" content="https://perps.aiyo.app/guides/aiagent/mcp/">
+  <meta property="og:image" content="https://perps.aiyo.app/assets/images/og-aiyo.jpg">
+  <link rel="icon" type="image/png" href="/assets/images/logo.png">
+  <link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要內容</a>
+  <header class="site-header">
+    <div class="shell">
+      <a class="brand" href="/"><img src="/assets/images/logo.png" alt="AiyoPerps logo" width="42" height="42"><span><small>Official Website</small>AiyoPerps</span></a>
+      <nav class="nav" aria-label="主要導覽">
+        <a href="/guides/">教學首頁</a>
+        <a href="/guides/install/docker-headless/">Docker</a>
+        <a href="/guides/desktop/windows/">桌面操作</a>
+        <a href="https://github.com/phidiassj/AiyoPerps" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="guide-main">
+    <section class="guide-hero">
+      <div class="guide-shell guide-hero-grid">
+        <div class="guide-copy panel" data-reveal>
+          <span class="eyebrow">MCP and REST API</span>
+          <h1>AiyoPerps MCP 及 REST API 工具手冊</h1>
+          <p class="lead">這頁整理 AiyoPerps 實際支援的 MCP tool 名稱、參數 schema、非同步操作規則與 REST API 端點。你可以把這些名稱直接放進 prompt，讓 AI Agent 用正確的 tool 名稱與參數格式操作 AiyoPerps。</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#mcp-tools">直接看 MCP 工具表</a>
+            <a class="button button-secondary" href="#rest-api">看 REST API 快覽</a>
+          </div>
+        </div>
+        <aside class="guide-summary panel" data-reveal>
+          <div class="api-meta-grid">
+            <div><strong>資料來源</strong><p>依 app 實作與 API 文件整理，避免只靠範例猜測。</p></div>
+            <div><strong>適合對象</strong><p>AI Agent 使用者、Prompt 設計者、MCP / API 串接開發者。</p></div>
+            <div><strong>你會拿到</strong><p>完整 tool 名稱、參數欄位、必要 workflow 與 REST 端點對照。</p></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+    <div class="guide-shell guide-layout">
+      <aside class="guide-sidebar">
+        <div class="sidebar-group">
+          <h2>本頁內容</h2>
+          <a href="#service-model">服務端點</a>
+          <a href="#prompt-rules">Prompt 使用原則</a>
+          <a href="#mcp-tools">MCP 工具總覽</a>
+          <a href="#tool-accounts">帳號與商品</a>
+          <a href="#tool-dashboard">Dashboard 與 AI Agent</a>
+          <a href="#tool-market">市場與帳戶讀取</a>
+          <a href="#tool-trading">交易與非同步操作</a>
+          <a href="#rest-api">REST API 快覽</a>
+          <a href="#examples">Prompt 範例</a>
+        </div>
+      </aside>
+      <div class="guide-content">
+        <section id="service-model" class="guide-section" data-reveal>
+          <span class="eyebrow">Service model</span>
+          <h2>本機服務端點與存取規則</h2>
+          <div class="api-card-grid">
+            <article class="api-card">
+              <strong>REST API Base</strong>
+              <p><code>http://127.0.0.1:5078/api/v1</code></p>
+              <p>桌面版可由上方工具列啟動或停止，headless / Docker 模式會自動啟動。</p>
+            </article>
+            <article class="api-card">
+              <strong>MCP Endpoint</strong>
+              <p><code>http://127.0.0.1:5078/mcp</code></p>
+              <p>使用 JSON-RPC over HTTP，支援 <code>initialize</code>、<code>ping</code>、<code>tools/list</code>、<code>tools/call</code>。</p>
+            </article>
+            <article class="api-card">
+              <strong>OpenAPI UI</strong>
+              <p><code>http://127.0.0.1:5078/scalar</code></p>
+              <p>可直接在瀏覽器查看 REST API 文件與測試端點。</p>
+            </article>
+            <article class="api-card">
+              <strong>MCP Tool Schema REST</strong>
+              <p><code>GET /api/v1/mcp/tools</code></p>
+              <p>若你要在外部系統做自動同步，可以讀這個端點取得目前公開的 MCP 工具資訊。</p>
+            </article>
+          </div>
+          <div class="callout api-callout">
+            <p>只允許本機連線。合法 host 包含 <code>127.0.0.1</code>、<code>localhost</code>、<code>::1</code>、<code>winhost</code>；Windows 也允許偵測到的 WSL vEthernet 子網段。非本機來源或不合法 <code>Origin</code> 會收到 <code>403</code>。</p>
+          </div>
+        </section>
+
+        <section id="prompt-rules" class="guide-section" data-reveal>
+          <span class="eyebrow">Prompt rules</span>
+          <h2>把 AiyoPerps 工具寫進 Prompt 前，先記住這幾條</h2>
+          <div class="api-pill-row">
+            <span class="api-pill">Tool 名稱一律用底線</span>
+            <span class="api-pill">參數接受 camelCase / PascalCase</span>
+            <span class="api-pill">修改型工具要再查 operations_get</span>
+            <span class="api-pill">不要猜 accountId / symbol / orderId</span>
+          </div>
+          <ul>
+            <li>AiyoPerps MCP 是即時交易狀態與執行結果的事實來源。若 prompt 有外部報告或網路資訊，agent 應先讀背景，再回到 AiyoPerps 驗證 live state。</li>
+            <li>新的 client 應使用底線名稱，例如 <code>dashboard_status_get</code>，不要再用舊的句點名稱。</li>
+            <li>讀取型工具通常可以直接呼叫；交易、取消單、Dashboard 啟停等修改型工具大多先回傳非同步 operation envelope。</li>
+            <li>呼叫 <code>dashboard_start</code>、<code>dashboard_refresh</code>、<code>positions_open</code>、<code>orders_cancel</code> 這類工具後，應再用 <code>operations_get</code> 輪詢直到狀態是 <code>Succeeded</code> 或 <code>Failed</code>。</li>
+            <li>如果只需要查單一帳號的持倉、掛單、餘額或市場資料，優先使用 direct read tools，例如 <code>positions_list</code>、<code>orders_list</code>、<code>balances_list</code>、<code>market_snapshot</code>，不一定要先 <code>dashboard_start</code>。</li>
+          </ul>
+        </section>
+
+        <section id="mcp-tools" class="guide-section" data-reveal>
+          <span class="eyebrow">MCP catalog</span>
+          <h2>MCP 工具總覽</h2>
+          <div class="api-card-grid">
+            <article class="api-card">
+              <strong>帳號與商品</strong>
+              <p><code>accounts_list</code>、<code>accounts_get</code>、<code>accounts_create</code>、<code>accounts_update</code>、<code>accounts_delete</code>、<code>symbols_list</code></p>
+            </article>
+            <article class="api-card">
+              <strong>Connections 與 Dashboard</strong>
+              <p><code>connections_list</code>、<code>connections_open</code>、<code>connections_close</code>、<code>dashboard_status_get</code>、<code>dashboard_options_get</code>、<code>dashboard_config_get</code>、<code>dashboard_config_set</code>、<code>dashboard_snapshot_get</code>、<code>dashboard_start</code>、<code>dashboard_stop</code>、<code>dashboard_refresh</code></p>
+            </article>
+            <article class="api-card">
+              <strong>AI Agent</strong>
+              <p><code>ai_agent_settings_get</code>、<code>ai_agent_settings_set</code></p>
+            </article>
+            <article class="api-card">
+              <strong>市場與帳戶讀取</strong>
+              <p><code>market_snapshot</code>、<code>market_data_get</code>、<code>positions_list</code>、<code>orders_list</code>、<code>balances_list</code></p>
+            </article>
+            <article class="api-card">
+              <strong>交易與壓測</strong>
+              <p><code>dashboard_positions_open</code>、<code>dashboard_positions_close</code>、<code>dashboard_orders_cancel</code>、<code>positions_open</code>、<code>positions_close</code>、<code>orders_cancel</code>、<code>stress_run</code></p>
+            </article>
+            <article class="api-card">
+              <strong>系統與非同步查詢</strong>
+              <p><code>operations_get</code>、<code>app_shutdown</code></p>
+            </article>
+          </div>
+        </section>
+
+        <section id="tool-accounts" class="guide-section" data-reveal>
+          <span class="eyebrow">Accounts and symbols</span>
+          <h2>帳號與商品工具</h2>
+          <div class="api-table-wrap">
+            <table class="api-table">
+              <thead>
+                <tr>
+                  <th>Tool</th>
+                  <th>用途</th>
+                  <th>必填參數</th>
+                  <th>可選參數</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong><code>accounts_list</code></strong></td>
+                  <td>列出所有已設定帳號。做 portfolio-wide workflow 時通常先從這裡開始。</td>
+                  <td>無</td>
+                  <td>無</td>
+                </tr>
+                <tr>
+                  <td><strong><code>accounts_get</code></strong></td>
+                  <td>讀取單一帳號資料。</td>
+                  <td><code>accountId</code>：帳號 GUID。</td>
+                  <td>無</td>
+                </tr>
+                <tr>
+                  <td><strong><code>accounts_create</code></strong></td>
+                  <td>建立新的帳號設定與憑證。</td>
+                  <td><code>venueId</code>、<code>displayName</code>、<code>environment</code>、<code>summary</code></td>
+                  <td><code>authMode</code>、<code>apiKey</code>、<code>apiSecret</code>、<code>accountAddress</code>、<code>subAccountId</code>、<code>walletAddress</code>、<code>privateKey</code>、<code>isEnabled</code></td>
+                </tr>
+                <tr>
+                  <td><strong><code>accounts_update</code></strong></td>
+                  <td>更新既有帳號資料與憑證。</td>
+                  <td><code>accountId</code>、<code>venueId</code>、<code>displayName</code>、<code>environment</code>、<code>summary</code></td>
+                  <td><code>authMode</code>、<code>apiKey</code>、<code>apiSecret</code>、<code>accountAddress</code>、<code>subAccountId</code>、<code>walletAddress</code>、<code>privateKey</code>、<code>isEnabled</code></td>
+                </tr>
+                <tr>
+                  <td><strong><code>accounts_delete</code></strong></td>
+                  <td>刪除帳號。這是非同步操作。</td>
+                  <td><code>accountId</code></td>
+                  <td>無</td>
+                </tr>
+                <tr>
+                  <td><strong><code>symbols_list</code></strong></td>
+                  <td>列出指定帳號可交易商品。</td>
+                  <td><code>accountId</code></td>
+                  <td>無</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout api-callout">
+            <p><code>venueId</code> 支援 <code>BitMEX</code>、<code>Hyperliquid</code>、<code>Aster</code>、<code>GRVT</code>、<code>dYdX</code>。<code>environment</code> 支援 <code>mainnet</code> 與 <code>testnet</code>。<code>authMode</code> 支援 <code>ApiKey</code>、<code>Wallet</code>、<code>Both</code>。</p>
+          </div>
+        </section>
+
+        <section id="tool-dashboard" class="guide-section" data-reveal>
+          <span class="eyebrow">Dashboard and AI agent</span>
+          <h2>Dashboard、Connections 與 AI Agent 工具</h2>
+          <div class="api-table-wrap">
+            <table class="api-table">
+              <thead>
+                <tr>
+                  <th>Tool</th>
+                  <th>用途</th>
+                  <th>必填參數</th>
+                  <th>可選參數</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong><code>connections_list</code></strong></td>
+                  <td>列出目前 active 的 market-data backend session。</td>
+                  <td>無</td>
+                  <td>無</td>
+                </tr>
+                <tr>
+                  <td><strong><code>connections_open</code></strong></td>
+                  <td>開啟指定帳號與商品的後端連線。這是非同步操作。</td>
+                  <td><code>accountId</code>、<code>symbol</code>、<code>interval</code></td>
+                  <td>無</td>
+                </tr>
+                <tr>
+                  <td><strong><code>connections_close</code></strong></td>
+                  <td>關閉指定帳號與商品的後端連線。這是非同步操作。</td>
+                  <td><code>accountId</code>、<code>symbol</code></td>
+                  <td>無</td>
+                </tr>
+                <tr>
+                  <td><strong><code>dashboard_status_get</code></strong></td>
+                  <td>讀取 Dashboard runtime 狀態與 counters。</td>
+                  <td>無</td>
+                  <td>無</td>
+                </tr>
+                <tr>
+                  <td><strong><code>dashboard_options_get</code></strong></td>
+                  <td>讀取目前 Dashboard 可選帳號與 symbol。</td>
+                  <td>無</td>
+                  <td>無</td>
+                </tr>
+                <tr>
+                  <td><strong><code>dashboard_config_get</code></strong></td>
+                  <td>讀取目前 Dashboard 設定。</td>
+                  <td>無</td>
+                  <td>無</td>
+                </tr>
+                <tr>
+                  <td><strong><code>dashboard_config_set</code></strong></td>
+                  <td>更新 Dashboard 設定。</td>
+                  <td><code>selectedAccountIds</code>、<code>interval</code>、<code>showTestnet</code></td>
+                  <td><code>symbol</code></td>
+                </tr>
+                <tr>
+                  <td><strong><code>dashboard_snapshot_get</code></strong></td>
+                  <td>讀取最新 Dashboard snapshot。這是 runtime cache，不會自己重新抓 live state。</td>
+                  <td>無</td>
+                  <td>無</td>
+                </tr>
+                <tr>
+                  <td><strong><code>dashboard_start</code></strong></td>
+                  <td>依目前設定啟動 Dashboard runtime。這是非同步操作。</td>
+                  <td>無</td>
+                  <td>無</td>
+                </tr>
+                <tr>
+                  <td><strong><code>dashboard_stop</code></strong></td>
+                  <td>停止 Dashboard runtime 並清空 runtime data。這是非同步操作。</td>
+                  <td>無</td>
+                  <td>無</td>
+                </tr>
+                <tr>
+                  <td><strong><code>dashboard_refresh</code></strong></td>
+                  <td>立即刷新 Dashboard snapshot。這是非同步操作。</td>
+                  <td>無</td>
+                  <td>無</td>
+                </tr>
+                <tr>
+                  <td><strong><code>ai_agent_settings_get</code></strong></td>
+                  <td>讀取目前 AI Agent scheduler 設定。</td>
+                  <td>無</td>
+                  <td>無</td>
+                </tr>
+                <tr>
+                  <td><strong><code>ai_agent_settings_set</code></strong></td>
+                  <td>覆蓋 AI Agent scheduler 設定，可設定定時喚醒與條件喚醒。</td>
+                  <td><code>isEnabled</code>、<code>agentType</code>、<code>wakeIntervalMinutes</code>、<code>commandTemplate</code>、<code>promptTemplate</code>、<code>workingDirectory</code>、<code>timeoutSeconds</code></td>
+                  <td><code>environmentVariables</code>、<code>wakeConditions[]</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="api-card-grid">
+            <article class="api-card">
+              <strong><code>dashboard_config_set</code> 參數補充</strong>
+              <ul>
+                <li><code>selectedAccountIds</code>：已選帳號 GUID 陣列。</li>
+                <li><code>symbol</code>：目前 Dashboard 商品，例如 <code>BTC</code>。</li>
+                <li><code>interval</code>：K 線週期，預設 <code>5m</code>。</li>
+                <li><code>showTestnet</code>：是否包含 testnet 帳號。</li>
+              </ul>
+            </article>
+            <article class="api-card">
+              <strong><code>ai_agent_settings_set</code> 的 <code>wakeConditions[]</code></strong>
+              <ul>
+                <li><code>conditionId</code>：可省略，系統會自動產生。</li>
+                <li><code>isEnabled</code>：是否啟用該條件。</li>
+                <li><code>accountId</code>：可省略，表示監看所有啟用帳號。</li>
+                <li><code>symbol</code>：監看的商品。</li>
+                <li><code>metric</code>：<code>price</code> 或 <code>unrealizedPnlPct</code>。</li>
+                <li><code>comparison</code>：<code>gt</code> 或 <code>lt</code>。</li>
+                <li><code>threshold</code>：門檻值。</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section id="tool-market" class="guide-section" data-reveal>
+          <span class="eyebrow">Market and account reads</span>
+          <h2>市場資料與帳戶狀態讀取工具</h2>
+          <div class="api-table-wrap">
+            <table class="api-table">
+              <thead>
+                <tr>
+                  <th>Tool</th>
+                  <th>用途</th>
+                  <th>必填參數</th>
+                  <th>可選參數</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong><code>market_snapshot</code></strong></td>
+                  <td>讀取初始 candle snapshot 或根據 cursor 讀增量資料。</td>
+                  <td><code>accountId</code>、<code>symbol</code></td>
+                  <td><code>interval</code>、<code>cursor</code></td>
+                </tr>
+                <tr>
+                  <td><strong><code>market_data_get</code></strong></td>
+                  <td>讀取市場 candle 資料；參數模型與 <code>market_snapshot</code> 相同。</td>
+                  <td><code>accountId</code>、<code>symbol</code></td>
+                  <td><code>interval</code>、<code>cursor</code></td>
+                </tr>
+                <tr>
+                  <td><strong><code>positions_list</code></strong></td>
+                  <td>列出某帳號目前持倉。</td>
+                  <td><code>accountId</code></td>
+                  <td><code>symbol</code></td>
+                </tr>
+                <tr>
+                  <td><strong><code>orders_list</code></strong></td>
+                  <td>列出某帳號目前 open orders。</td>
+                  <td><code>accountId</code></td>
+                  <td><code>symbol</code></td>
+                </tr>
+                <tr>
+                  <td><strong><code>balances_list</code></strong></td>
+                  <td>列出某帳號餘額。</td>
+                  <td><code>accountId</code></td>
+                  <td><code>symbol</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout api-callout">
+            <p><code>market_snapshot</code> / <code>market_data_get</code> 的 cursor 模式是: 第一次不帶 <code>cursor</code>，回傳 <code>initialCandles</code> 與新 <code>cursor</code>；後續再帶入 <code>cursor</code>，只回傳 <code>deltaCandles</code> 與新的 <code>cursor</code>。</p>
+          </div>
+        </section>
+
+        <section id="tool-trading" class="guide-section" data-reveal>
+          <span class="eyebrow">Trading and operations</span>
+          <h2>交易、取消單、壓測與非同步查詢工具</h2>
+          <div class="api-table-wrap">
+            <table class="api-table">
+              <thead>
+                <tr>
+                  <th>Tool</th>
+                  <th>用途</th>
+                  <th>必填參數</th>
+                  <th>可選參數</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong><code>dashboard_positions_open</code></strong></td>
+                  <td>在 Dashboard 選定帳號列上開倉或增加曝險。這是非同步操作。</td>
+                  <td><code>accountId</code>、<code>symbol</code>、<code>side</code>、<code>orderType</code>、<code>leverage</code>、<code>amount</code>、<code>amountUnit</code></td>
+                  <td><code>marginMode</code>、<code>limitPrice</code></td>
+                </tr>
+                <tr>
+                  <td><strong><code>dashboard_positions_close</code></strong></td>
+                  <td>在 Dashboard 上依 <code>positionId</code> 全平持倉。這是非同步操作。</td>
+                  <td><code>accountId</code>、<code>positionId</code>、<code>orderType</code></td>
+                  <td><code>limitPrice</code></td>
+                </tr>
+                <tr>
+                  <td><strong><code>dashboard_orders_cancel</code></strong></td>
+                  <td>取消 Dashboard 中的掛單。這是非同步操作。</td>
+                  <td><code>accountId</code>、<code>symbol</code>、<code>orderId</code></td>
+                  <td>無</td>
+                </tr>
+                <tr>
+                  <td><strong><code>positions_open</code></strong></td>
+                  <td>直接開倉，不依賴 Dashboard runtime。這是非同步操作。</td>
+                  <td><code>accountId</code>、<code>symbol</code>、<code>side</code>、<code>orderType</code>、<code>leverage</code>、<code>amount</code>、<code>amountUnit</code></td>
+                  <td><code>marginMode</code>、<code>limitPrice</code></td>
+                </tr>
+                <tr>
+                  <td><strong><code>positions_close</code></strong></td>
+                  <td>直接依 <code>positionId</code> 平倉，不依賴 Dashboard runtime。這是非同步操作。</td>
+                  <td><code>accountId</code>、<code>positionId</code>、<code>orderType</code></td>
+                  <td><code>limitPrice</code></td>
+                </tr>
+                <tr>
+                  <td><strong><code>orders_cancel</code></strong></td>
+                  <td>直接取消掛單，不依賴 Dashboard runtime。這是非同步操作。</td>
+                  <td><code>accountId</code>、<code>symbol</code>、<code>orderId</code></td>
+                  <td>無</td>
+                </tr>
+                <tr>
+                  <td><strong><code>stress_run</code></strong></td>
+                  <td>執行 server-side market snapshot 壓測。</td>
+                  <td><code>accountId</code>、<code>symbol</code></td>
+                  <td><code>interval</code>、<code>concurrency</code>、<code>iterations</code></td>
+                </tr>
+                <tr>
+                  <td><strong><code>operations_get</code></strong></td>
+                  <td>查詢非同步 operation 狀態與結果。</td>
+                  <td><code>operationId</code></td>
+                  <td>無</td>
+                </tr>
+                <tr>
+                  <td><strong><code>app_shutdown</code></strong></td>
+                  <td>請求 app 優雅關閉並釋放資源。</td>
+                  <td>無</td>
+                  <td>無</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="api-card-grid">
+            <article class="api-card">
+              <strong>交易參數列舉值</strong>
+              <ul>
+                <li><code>side</code>：<code>buy</code>、<code>sell</code>、<code>long</code>、<code>short</code></li>
+                <li><code>orderType</code>：<code>market</code>、<code>limit</code></li>
+                <li><code>marginMode</code>：<code>cross</code>、<code>isolated</code></li>
+                <li><code>amountUnit</code>：例如 <code>USD</code> 或標的幣別</li>
+              </ul>
+            </article>
+            <article class="api-card">
+              <strong>非同步操作規則</strong>
+              <ul>
+                <li>常見狀態：<code>Pending</code>、<code>Running</code>、<code>Succeeded</code>、<code>Failed</code></li>
+                <li>修改型 tool 成功送出後，通常先拿到 <code>operationId</code> 與 <code>statusUrl</code></li>
+                <li>應持續呼叫 <code>operations_get</code> 直到完成</li>
+                <li>若是 Dashboard 流程，完成後通常還要再 <code>dashboard_refresh</code> 並重讀 snapshot 驗證結果</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section id="rest-api" class="guide-section" data-reveal>
+          <span class="eyebrow">REST quick reference</span>
+          <h2>REST API 快覽</h2>
+          <div class="api-table-wrap">
+            <table class="api-table">
+              <thead>
+                <tr>
+                  <th>Endpoint</th>
+                  <th>方法</th>
+                  <th>用途</th>
+                  <th>主要參數</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>/api/v1/health</code></td>
+                  <td><strong>GET</strong></td>
+                  <td>服務健康檢查</td>
+                  <td>無</td>
+                </tr>
+                <tr>
+                  <td><code>/api/v1/app/shutdown</code></td>
+                  <td><strong>POST</strong></td>
+                  <td>請求 app 優雅關閉</td>
+                  <td>無</td>
+                </tr>
+                <tr>
+                  <td><code>/api/v1/dashboard/status</code>、<code>/options</code>、<code>/config</code>、<code>/snapshot</code></td>
+                  <td><strong>GET</strong></td>
+                  <td>讀取 Dashboard 狀態、選項、設定與 snapshot</td>
+                  <td>無</td>
+                </tr>
+                <tr>
+                  <td><code>/api/v1/dashboard/config</code></td>
+                  <td><strong>PUT</strong></td>
+                  <td>更新 Dashboard 設定</td>
+                  <td><code>selectedAccountIds</code>、<code>interval</code>、<code>showTestnet</code>、可選 <code>symbol</code></td>
+                </tr>
+                <tr>
+                  <td><code>/api/v1/dashboard/start</code>、<code>/stop</code>、<code>/refresh</code></td>
+                  <td><strong>POST</strong></td>
+                  <td>控制 Dashboard runtime</td>
+                  <td>無</td>
+                </tr>
+                <tr>
+                  <td><code>/api/v1/dashboard/open-position</code>、<code>/close-position</code>、<code>/cancel-order</code></td>
+                  <td><strong>POST</strong></td>
+                  <td>透過 Dashboard runtime 下單、平倉、取消單</td>
+                  <td>同對應交易 body schema</td>
+                </tr>
+                <tr>
+                  <td><code>/api/v1/ai-agent/settings</code></td>
+                  <td><strong>GET / PUT</strong></td>
+                  <td>讀取或更新 AI Agent 設定</td>
+                  <td>同 <code>ai_agent_settings_set</code></td>
+                </tr>
+                <tr>
+                  <td><code>/api/v1/accounts</code>、<code>/api/v1/accounts/{accountId}</code></td>
+                  <td><strong>GET / POST / PUT / DELETE</strong></td>
+                  <td>帳號 CRUD</td>
+                  <td><code>accountId</code> 與 <code>ApiAccountUpsertRequest</code></td>
+                </tr>
+                <tr>
+                  <td><code>/api/v1/accounts/{accountId}/symbols</code>、<code>/api/v1/symbols?accountId=...</code></td>
+                  <td><strong>GET</strong></td>
+                  <td>商品列表</td>
+                  <td><code>accountId</code></td>
+                </tr>
+                <tr>
+                  <td><code>/api/v1/connections</code>、<code>/open</code>、<code>/close</code></td>
+                  <td><strong>GET / POST</strong></td>
+                  <td>管理市場資料連線</td>
+                  <td><code>accountId</code>、<code>symbol</code>、可選 <code>interval</code></td>
+                </tr>
+                <tr>
+                  <td><code>/api/v1/market-data</code>、<code>/api/v1/market/snapshot</code></td>
+                  <td><strong>GET</strong></td>
+                  <td>市場 candle 資料</td>
+                  <td><code>accountId</code>、<code>symbol</code>、可選 <code>interval</code>、<code>cursor</code></td>
+                </tr>
+                <tr>
+                  <td><code>/api/v1/positions</code>、<code>/api/v1/orders</code>、<code>/api/v1/balances</code></td>
+                  <td><strong>GET</strong></td>
+                  <td>帳戶狀態查詢</td>
+                  <td><code>accountId</code>、可選 <code>symbol</code></td>
+                </tr>
+                <tr>
+                  <td><code>/api/v1/trading/open-position</code>、<code>/close-position</code>、<code>/cancel-order</code></td>
+                  <td><strong>POST</strong></td>
+                  <td>直接交易操作</td>
+                  <td>同對應交易 body schema</td>
+                </tr>
+                <tr>
+                  <td><code>/api/v1/stress/run</code></td>
+                  <td><strong>POST</strong></td>
+                  <td>壓測</td>
+                  <td><code>accountId</code>、<code>symbol</code>、可選 <code>interval</code>、<code>concurrency</code>、<code>iterations</code></td>
+                </tr>
+                <tr>
+                  <td><code>/api/v1/operations/{operationId}</code></td>
+                  <td><strong>GET</strong></td>
+                  <td>查詢非同步 operation</td>
+                  <td><code>operationId</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="examples" class="guide-section" data-reveal>
+          <span class="eyebrow">Prompt examples</span>
+          <h2>可直接調整後使用的 Prompt 範例</h2>
+          <div class="api-card-grid">
+            <article class="api-card">
+              <strong>唯讀分析 prompt</strong>
+              <div class="code-block" data-code-title="prompt"><code>請先用 accounts_list 列出所有帳號，再對每個 accountId 呼叫 positions_list、orders_list、balances_list。
+不要執行任何交易或取消單。
+最後整理目前各帳號的持倉方向、未成交掛單與可用餘額，若需要市場資料再用 market_snapshot 讀取 BTC。</code></div>
+            </article>
+            <article class="api-card">
+              <strong>Dashboard workflow prompt</strong>
+              <div class="code-block" data-code-title="prompt"><code>請先用 dashboard_status_get 檢查 runtime。
+若尚未啟動，先用 dashboard_options_get 確認可用帳號與 symbol，再用 dashboard_config_set 將 selectedAccountIds 設為指定帳號、symbol 設為 BTC、interval 設為 5m，然後呼叫 dashboard_start。
+之後讀取 dashboard_snapshot_get 回報市場、持倉與掛單摘要，不要下單。</code></div>
+            </article>
+            <article class="api-card">
+              <strong>執行交易 prompt</strong>
+              <div class="code-block" data-code-title="prompt"><code>請使用 positions_open 在指定 accountId 對 BTC 開一筆 market long。
+參數請明確帶入 leverage、amount、amountUnit。
+送出後務必輪詢 operations_get，直到狀態為 Succeeded 或 Failed。
+若成功，再用 positions_list 與 orders_list 驗證最新狀態。</code></div>
+            </article>
+            <article class="api-card">
+              <strong>設定 AI Agent 喚醒條件 prompt</strong>
+              <div class="code-block" data-code-title="prompt"><code>請先讀 ai_agent_settings_get。
+接著用 ai_agent_settings_set 更新目前設定，保留既有 commandTemplate 與 workingDirectory，
+新增一筆 wakeCondition：監看指定 accountId 的 BTC，metric 使用 unrealizedPnlPct，comparison 使用 lt，threshold 設為 -8。
+完成後回報新的設定內容。</code></div>
+            </article>
+          </div>
+          <div class="guide-nav-grid">
+            <article class="guide-nav-card">
+              <h3>需要先把 MCP 接進 Agent？</h3>
+              <p>如果你還沒完成 Codex 或其他 AI Agent 的 MCP 安裝，先看安裝與互動指引會比較順。</p>
+              <a class="button button-primary" href="/guides/aiagent/codex/">前往 AI Agent 安裝指引</a>
+            </article>
+            <article class="guide-nav-card">
+              <h3>需要先開服務？</h3>
+              <p>如果你要用 headless 節點對外提供 MCP / REST API，請先完成 Docker headless 啟動流程。</p>
+              <a class="button button-secondary" href="/guides/install/docker-headless/">前往 Docker headless 教學</a>
+            </article>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <p>© AiyoPerps. Official MCP and REST API guide.</p>
+      <div class="lang-switch"><a class="active" href="/guides/aiagent/mcp/">MCP / REST API</a><a href="/guides/">教學首頁</a></div>
+    </div>
+  </footer>
+  <script src="/assets/site.js" defer></script>
+</body>
+</html>
