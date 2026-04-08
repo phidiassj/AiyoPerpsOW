@@ -33,4 +33,25 @@
   <url>
     <loc>https://perps.aiyo.app/guides/aiagent/mcp/</loc>
   </url>
+  <url>
+    <loc>https://perps.aiyo.app/en/guides/</loc>
+  </url>
+  <url>
+    <loc>https://perps.aiyo.app/en/guides/install/windows-x64/</loc>
+  </url>
+  <url>
+    <loc>https://perps.aiyo.app/en/guides/install/linux-x64/</loc>
+  </url>
+  <url>
+    <loc>https://perps.aiyo.app/en/guides/install/docker-headless/</loc>
+  </url>
+  <url>
+    <loc>https://perps.aiyo.app/en/guides/desktop/windows/</loc>
+  </url>
+  <url>
+    <loc>https://perps.aiyo.app/en/guides/aiagent/codex/</loc>
+  </url>
+  <url>
+    <loc>https://perps.aiyo.app/en/guides/aiagent/mcp/</loc>
+  </url>
 </urlset>
